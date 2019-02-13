@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -48,5 +49,15 @@ public class CustomerController {
     @DeleteMapping("/delete/{id}")
     public void delete(@PathVariable long id) {
         this.service.delete(id);
+    }
+
+    @GetMapping("/revisions/{customerId}")
+    public List<Number> revisions(@PathVariable long customerId) {
+        return this.service.revisions(customerId);
+    }
+
+    @GetMapping("/revision/{customerId}/{revisionId}")
+    public Customer getCustomerRevision(@PathVariable long customerId, @PathVariable int revisionId) {
+        return this.service.findRevision(customerId, revisionId);
     }
 }

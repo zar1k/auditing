@@ -1,5 +1,6 @@
 package com.gmail.andreyzarazka.auditing.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.gmail.andreyzarazka.auditing.model.audit.AuditInfo;
 import lombok.AllArgsConstructor;
@@ -41,6 +42,7 @@ public class Customer extends AuditInfo {
     @NotNull
     private String phone;
 
+    @JsonBackReference
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Bill> bills = new HashSet<>();
 }

@@ -1,5 +1,6 @@
 package com.gmail.andreyzarazka.auditing.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.gmail.andreyzarazka.auditing.model.audit.AuditInfo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -35,6 +36,7 @@ public class Bill extends AuditInfo {
     @JoinColumn(name = "addresses_id")
     private Address address;
 
+    @JsonBackReference
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Provider> providers = new HashSet<>();
 }
